@@ -10,12 +10,13 @@ class Solution:
             mink.append(cur)
         x=mink[:]
         x.sort()
+        print(x)
         print(mink)
         for j in range(len(mink)):
             y = mink.index(x[j])
             
-            mink[j]=100
-            
+            x[j]=100
+            print(x)
             print(y)
             
             answer[j]=points[y]
@@ -25,4 +26,5 @@ class Solution:
         return answer[:k]
 
 x=Solution()
-print(x.kClosest([[3,3],[5,-1],[-2,4]], 2))
+print(x.kClosest([[0,1], [1,0]], 2))
+# print(x.kClosest([[3,3],[5,-1],[-2,4]], 2))
