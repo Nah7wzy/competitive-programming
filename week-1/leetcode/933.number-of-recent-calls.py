@@ -1,10 +1,10 @@
-from typing import Deque
+from collections import deque
 
 
 class RecentCounter:
 
     def __init__(self):
-        self.requests=Deque()
+        self.requests=deque()
 
     def ping(self, t: int) -> int:
         self.requests.append(t)
