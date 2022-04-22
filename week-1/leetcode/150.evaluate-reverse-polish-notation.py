@@ -1,19 +1,37 @@
 class Solution:
-    def calc(self,a,b,c):
-        return b+a if c=='+' else b-a if c=='+' else b*a if c=='*' else b//a
+    def calc(self, a, b, c):
+        if c == '/':
+            if a < 0 and b > 0 or a > 0 and b < 0:
+                return -(abs(b)//abs(a))
+            if abs(b) < abs(a):
+                return 0
+            else:
+                return b//a
+        return b+a if c == '+' else b-a if c == '-' else b*a if c == '*' else b//a
+
     def evalRPN(self, tokens) -> int:
-        exp=[]
-        op=['+','-','*','/']
+        # print(3-16)
+        exp = []
+        op = ['+', '-', '*', '/']
         for i in tokens:
+            # print(exp)
+
             if i in op:
-                a=exp.pop()
-                b=exp.pop()
-                c=self.calc(int(a),int(b),i)
-                print(c)
+                a = exp.pop()
+                b = exp.pop()
+                c = self.calc(int(a), int(b), i)
+                # print(c)
+
                 exp.append(c)
             else:
                 exp.append(i)
         return exp[0]
 
-x=Solution()
-print(x.evalRPN(["10","6","9","3","+","-11","*","/","*","17","+","5","+"]))
+
+x = Solution()
+print(x.evalRPN(
+    ["-78", "-33", "196", "+", "-19", "-", "115", "+", "-", "-99", "/", "-18", "8", "*", "-86", "-", "-", "16", "/", "26", "-14", "-", "-", "47", "-", "101", "-", "163", "*", "143", "-", "0", "-", "171", "+", "120", "*", "-60", "+", "156", "/", "173", "/", "-24", "11", "+", "21", "/", "*", "44", "*", "180",
+        "70", "-40", "-", "*", "86", "132", "-84", "+", "*", "-", "38", "/", "/", "21", "28", "/", "+", "83", "/", "-31", "156", "-", "+", "28", "/", "95", "-", "120", "+", "8", "*", "90", "-", "-94", "*", "-73", "/", "-62", "/", "93", "*", "196", "-", "-59", "+", "187", "-", "143", "/", "-79", "-89", "+", "-"]
+))
+
+print(-5//2)
