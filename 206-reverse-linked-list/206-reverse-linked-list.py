@@ -10,6 +10,6 @@ class Solution:
         while ptr:
             temp=ptr.next #preserve the next since the current next will be changed to prev
             ptr.next=prev #point backwards
-            prev=ptr
+            prev=ptr #update prev to current (which also traverse)
             ptr=temp
-        return prev
+        return prev #last previous will be the head of the reversed
