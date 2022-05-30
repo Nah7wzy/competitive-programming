@@ -1,7 +1,7 @@
 # The isBadVersion API is already defined for you.
 # def isBadVersion(version: int) -> bool:
 
-class Solution:
+class Solution: #10
     def firstBadVersion(self, n: int) -> int:
         left, right = 0, n
         
