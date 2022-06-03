@@ -6,7 +6,7 @@ class NumMatrix:
         for r in range(1, rows+1):
             for c in range(1, cols+1):
                 self.prefixSum[r][c] = self.prefixSum[r-1][c] + self.prefixSum[r][c-1] - self.prefixSum[r-1][c-1] + matrix[r-1][c-1]
-
+        
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
         return self.prefixSum[row2+1][col2+1] - self.prefixSum[row2+1][col1] - self.prefixSum[row1][col2+1] + self.prefixSum[row1][col1]
 
