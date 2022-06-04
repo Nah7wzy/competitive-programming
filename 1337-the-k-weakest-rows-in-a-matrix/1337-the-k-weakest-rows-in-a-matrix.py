@@ -3,7 +3,7 @@ class Solution:
         minHeap = [(self.findOnes(x), i) for i, x in enumerate(mat)]
         heapify(minHeap)
         ans = []
-        print(minHeap)
+        
         while k > 0:
             ans.append(heappop(minHeap)[1])
             k -= 1
