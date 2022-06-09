@@ -14,12 +14,12 @@ class Solution:
                     posdiag.add(i+j)
                     negdiag.add(j-i)
                     col.add(j)
-                    board[i][j] = 'Q'
+                    board[j][i] = 'Q'
                     place(i+1)
                     posdiag.remove(i+j)
                     negdiag.remove(j-i)
                     col.remove(j)
-                    board[i][j] = '.'
+                    board[j][i] = '.'
                     
         place(0)
         return results
