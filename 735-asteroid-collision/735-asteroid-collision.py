@@ -3,9 +3,9 @@ class Solution:
         monoStack = []
         for i in asteroids:
             if i < 0:
-                while monoStack and monoStack[-1] >=0 and monoStack[-1] < abs(i):
+                while monoStack and monoStack[-1] >=0 and monoStack[-1] < -i:
                     monoStack.pop()
-                if monoStack and abs(i) == monoStack[-1]:
+                if monoStack and -i == monoStack[-1]:
                     monoStack.pop()
                 elif not monoStack or monoStack[-1] < 0:
                     monoStack.append(i)
