@@ -1,14 +1,13 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        for i in range(len(matrix)):
-            l, r = 0, len(matrix[0]) - 1
-            while l <= r:
-                mid = l + (r - l) // 2
-                if target > matrix[i][mid]:
-                    l = mid + 1
-                elif target < matrix[i][mid]:
-                    r = mid - 1
-                else:
-                    return True
-                
+        r, c = len(matrix) - 1, 0 #start from bottom left and move up or right conditionally
+        
+        while r >= 0 and c < len(matrix[0]):
+            if matrix[r][c] > target:
+                r -= 1
+            elif matrix[r][c] < target:
+                c += 1
+            else:
+                return True
+            
         return False
