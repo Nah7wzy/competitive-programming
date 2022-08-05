@@ -1,16 +1,19 @@
-class Solution:
+class Solution: #20
     def findDuplicate(self, nums: List[int]) -> int:
+        #binary search 1 to n looking in nums for each how many values are lower, if the count is greater than the expected 1 to x count, that means a value is duplicate below x
         n = len(nums)
-        nums.sort()
-        left, right = 0, n-1
-        
-        while left < right:
+        l, r = 1, n
+        while l <= r:
+            mid = l + (r - l) // 2
+            total = 0
+            for i in nums:
+                total += 1 if i <= mid else 0
             
-            mid = left + (right - left) // 2
-            
-            if nums[mid] >= mid + 1:
-                left = mid
-            elif nums[mid] < mid + 1:
-                right = mid
+            if total > mid:
+                res = mid
+                r = mid - 1
+            else:
+                l = mid + 1
                 
-            if nums[left] == nums[right]:   return nums[left]
+        return res
+        
