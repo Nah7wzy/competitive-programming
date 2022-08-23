@@ -12,7 +12,6 @@ class Solution:
             l=l.next
         
         prev , second = None, l.next
-        # print(second)
         #reverse second part
         while second:
             temp = second.next
@@ -22,9 +21,9 @@ class Solution:
         second = prev
         first = head
         while second:
-            # print(first, second)
             if first.val!=second.val:
                 return False
             first, second = first.next, second.next
+            
         return True
         
