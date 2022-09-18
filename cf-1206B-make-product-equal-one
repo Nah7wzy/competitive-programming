@@ -1,0 +1,23 @@
+def inp():
+    n = eval(input())
+    arr = [int(e) for e in input().split()]
+    print(solution(sorted(arr),n))
+        
+def solution(arr, n):
+    neg = zero = res = 0
+    for i in range(n):
+        if arr[i] == 0: zero += 1
+        if arr[i] < 0:  neg += 1
+        
+    for j in range(n):
+        if arr[j] < 0:
+            res += (-1 - arr[j])
+        else:
+            res += abs(arr[j] - 1)
+            
+    if neg % 2 != 0 and zero == 0:
+        res += 2
+    
+    return res
+    
+inp()
