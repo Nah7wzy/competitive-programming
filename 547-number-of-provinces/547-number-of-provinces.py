@@ -1,19 +1,28 @@
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        n = len(isConnected)
-        seen = set()
-        def dfs(x):
-            for i, connected in enumerate(isConnected[x]):
-                if connected and i not in seen:
-                    seen.add(i)
-                    dfs(i)
-         
-        count = 0
-        for i in range(n):
-            if i not in seen:
-                count += 1
-                dfs(i)
+        parent = [i for i in range(len(isConnected))]
+        # rank = [1 for _ in range()]
+        def find(i):
+            if i == parent[i]:
+                return i
+            
+            parent[i] = find(parent[i])
+            return parent[i]
+        
+        provinces = len(isConnected)
+        def unite(a, b):
+            nonlocal provinces
+            
+            par_a = find(a)
+            par_b = find(b)
+            
+            if par_a != par_b:
+                provinces -= 1
+                parent[par_a] = par_b
                 
-        return count
-            
-            
+        for i in range(len(isConnected)):
+            for j in range(len(isConnected)):
+                if i != j and isConnected[i][j] == 1:
+                    unite(i, j)
+        
+        return provinces
