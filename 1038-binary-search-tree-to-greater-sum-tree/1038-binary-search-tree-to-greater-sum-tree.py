@@ -12,9 +12,8 @@ class Solution:
             if not node:
                 return
             dfs(node.right)
-            temp = node.val
             node.val += total
-            total += temp
+            total = node.val
             dfs(node.left)
             
         dfs(root)
