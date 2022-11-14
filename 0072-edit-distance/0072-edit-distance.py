@@ -1,15 +1,27 @@
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
-        dp = [[j for _ in range(len(word1) + 1)] for j in range(len(word2), 0, -1)]
-        dp.append([i for i in range(len(word1), -1, -1)])
+        memo = {}
         
-        for i in range(len(word2) - 1, -1, -1):
-            for j in range(len(word1) -1, -1, -1):
-                if word2[i] == word1[j]:
-                    dp[i][j] = dp[i+1][j+1]
+        def dp(i, j):
+            if i >= len(word1) or j >= len(word2):
+                if j >= len(word2):
+                    return len(word1) - i
                 else:
-                    dp[i][j] = 1 + min(dp[i+1][j], dp[i][j+1], dp[i+1][j+1])
-
-        return dp[0][0]
+                    return len(word2) - j
+                
+            if (i, j) in memo:
+                return memo[(i, j)]
+            
+            if word1[i] == word2[j]:
+                memo[(i, j)] = dp(i+1, j+1)
+            else:
+                insert = 1 + dp(i, j + 1)
+                delete = 1 + dp(i + 1, j)
+                replace = 1 + dp(i + 1, j + 1)
+            
+                memo[(i, j)] = min(insert, delete, replace)
+                
+            return memo[(i, j)]
         
+        return dp(0, 0)
         
