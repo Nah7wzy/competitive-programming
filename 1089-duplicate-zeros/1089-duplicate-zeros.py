@@ -3,22 +3,22 @@ class Solution:
         """
         Do not return anything, modify arr in-place instead.
         """
-        #first find last surviving element
-        l, r = 0, len(arr) - 1
-        while l < r:
-            if arr[l] == 0:
-                arr[l] = -1 #to know if to be doubled or just ending element
-                r -= 1
-            l += 1
-            
-        #starting from the previous position reorder elements, double zeros when found
-        p1, p2 = r, len(arr) - 1
-        while p1 >= 0 and p1 < p2:
-            arr[p2] = arr[p1] if arr[p1] != -1 else 0
-            if arr[p1] == -1: #to be doubled
-                p2 -= 1
-                arr[p2] = 0
-            p2 -= 1
-            p1 -= 1
         
+        #find the element that will be at the end using one iteration of zero count
+        i, last_pos = 0, len(arr) - 1
+        while i < last_pos:
+            if arr[i] == 0:
+                last_pos -= 1
+            i += 1
             
+        #start from the back and build the array
+        j = len(arr) - 1
+        while last_pos >= 0:
+            arr[j] = arr[last_pos]
+            if arr[last_pos] == 0 and last_pos != i:
+                j -= 1
+                arr[j] = arr[last_pos]
+            j -= 1
+            last_pos -= 1
+        
+        
